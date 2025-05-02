@@ -1,9 +1,8 @@
 package com.example.demo.repository;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.demo.model.RoleManagement;
+import com.example.demo.model.User;
 
-public interface UserRepository extends JpaRepository<RoleManagement,Integer> {
-   //User findByEmail(String email);
+public interface UserRepository extends JpaRepository<User, Integer> {
+	
 }
