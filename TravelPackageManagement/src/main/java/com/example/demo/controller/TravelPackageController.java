@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.exception.PackNotFound;
+import com.example.demo.exception.PackageNotFound;
 import com.example.demo.model.Pack;
 import com.example.demo.service.TravelPackageService;
 
@@ -38,7 +38,7 @@ public class TravelPackageController {
 	}
 
 	@GetMapping("/fetchById/{fid}")
-	public Pack getPack(@PathVariable("fid") int packId) throws PackNotFound {
+	public Pack getPack(@PathVariable("fid") int packId) throws PackageNotFound {
 		return service.getPack(packId);
 	}
 

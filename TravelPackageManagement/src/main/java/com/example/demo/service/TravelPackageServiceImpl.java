@@ -6,7 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.exception.PackNotFound;
+import com.example.demo.exception.PackageNotFound;
+import com.example.demo.feignclient.ReviewClient;
 import com.example.demo.model.Pack;
 import com.example.demo.repository.TravelPackageRepository;
 
@@ -20,7 +21,9 @@ public class TravelPackageServiceImpl implements TravelPackageService {
 	@Autowired
 	TravelPackageRepository repository;
 
-
+    @Autowired
+    ReviewClient reviewClient;
+    
 	@Override
 	public String savePack(Pack pack) {
 		Pack package2 = repository.save(pack);
@@ -43,18 +46,25 @@ public class TravelPackageServiceImpl implements TravelPackageService {
 
         repository.deleteById(packId);
 		return "deleted successfully";
-		
+		 	
 	}
+	
+	  public void deletePackage(int packageId) {
+	        // First, delete associated reviews
+	        reviewClient.deleteReviewsByPackage(packageId);
+	        
+	        repository.deleteById(packageId);
+	    }
 
 	@Override
-	public Pack getPack(int packId) throws PackNotFound {
+	public Pack getPack(int packId) throws PackageNotFound {
        
 		Optional<Pack> optional= repository.findById(packId);
 		if(optional.isPresent()) {
 		return optional.get();
 		}
 		else
-			throw new PackNotFound("Not found");
+			throw new PackageNotFound("Not found");
 	}
 
 	@Override

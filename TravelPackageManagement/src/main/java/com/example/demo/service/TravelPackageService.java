@@ -2,7 +2,7 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.exception.PackNotFound;
+import com.example.demo.exception.PackageNotFound;
 import com.example.demo.model.Pack;
 
 public interface TravelPackageService {
@@ -13,7 +13,7 @@ public interface TravelPackageService {
 
 	public abstract String removePack(int packId);
 
-	public abstract Pack getPack(int packId) throws PackNotFound;
+	public abstract Pack getPack(int packId) throws PackageNotFound;
 
 	public abstract List<Pack> getAllPack();
 

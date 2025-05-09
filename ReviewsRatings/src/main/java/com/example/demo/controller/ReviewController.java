@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.UserReviewResponseDTO;
 import com.example.demo.exception.UserNotFound;
 import com.example.demo.model.Review;
 import com.example.demo.service.ReviewService;
@@ -38,7 +39,7 @@ public class ReviewController {
 	}
 
 	@GetMapping("/fetchById/{fid}")
-	public Review getReview(@PathVariable("fid") int reviewId) throws UserNotFound {
+	public UserReviewResponseDTO getReview(@PathVariable("fid") int reviewId) throws UserNotFound {
 		return service.getReview(reviewId);
 	}
 
